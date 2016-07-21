@@ -16,6 +16,7 @@ public class CustomDialog extends Dialog {
     private View view;
 
     protected int screenWidth;
+    int screenHeight;
     private float mDensity = 1f;
     private int paddingSize = 0;
 
@@ -56,25 +57,28 @@ public class CustomDialog extends Dialog {
         super.onCreate(savedInstanceState);
         // 添加布局
         ViewGroup.LayoutParams viewLayoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        viewLayoutParams.width = screenWidth - screenWidth * 1 / 5;
+//        viewLayoutParams.width = screenWidth - screenWidth * 2 / 5;
+        viewLayoutParams.width = screenWidth;
+        viewLayoutParams.height = screenHeight;
         setContentView(this.view, viewLayoutParams);
     }
 
     protected void initView() {
         // 获取系统数据
         this.screenWidth = this.ctx.getResources().getDisplayMetrics().widthPixels;
+        screenHeight = ctx.getResources().getDisplayMetrics().heightPixels;
         this.mDensity = this.ctx.getResources().getDisplayMetrics().density;
         this.paddingSize = (int) (6 * this.mDensity);
 
         // 初始化布局
         this.view = LayoutInflater.from(this.ctx).inflate(layoutRes, null);
 
-        // 设置边距
+      /*  // 设置边距
         int padding = this.screenWidth * 5 / 100;
-        this.view.setPadding(padding, padding, padding, padding);
+        this.view.setPadding(padding, padding, padding, padding);*/
 
         // 设置点击空白处不关闭
-        setCanceledOnTouchOutside(false);
+        setCanceledOnTouchOutside(true);
     }
 
 
